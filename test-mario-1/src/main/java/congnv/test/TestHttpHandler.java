@@ -12,7 +12,9 @@ public class TestHttpHandler extends BaseMessageHandler {
 		getLogger().info("Init {} instance with name {}", this.getClass().getName(), this.getName());
 	}
 	
-	public PuElement handler(Message message) {
+	@Override
+	public PuElement handle(Message message) {
+		getLogger().debug("abc");
 		if (message.getData() instanceof PuObject) {
 			PuObject params = (PuObject) message.getData();
 			String command = params.getString("command", null);

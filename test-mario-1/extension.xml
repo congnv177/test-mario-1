@@ -15,7 +15,7 @@
 			<path>/test</path>
 		</http>
 	</gateways>
-	
+
 	<lifecycles>
 		<handler>
 			<name>test_handler</name>
@@ -23,6 +23,36 @@
 			<bind>
 				<gateway>test_http_gateway</gateway>
 			</bind>
+			<variables>
+				<variable name="modelInfo" type="puobject">
+					<variable name="type" type="string">mysql</variable>
+					<variable name="dataSourceName" type="string">test_mysql_datasource</variable>
+					<variable name="modelMapping" type="puobject">
+						<variable name="congnv.test.model.ProvinceModel" type="String">congnv.test.model.impl.ProvinceModelImpl</variable>
+					</variable>
+				</variable>
+			</variables>
 		</handler>
 	</lifecycles>
+
+	<!-- user dataSource for connect to DB localhost -->
+	<datasources>
+		<sql>
+			<name>test_mysql_datasource</name>
+			<variables>
+				<!-- everything in this block will override config in file spec by properties file tag -->
+				<!-- the content will replace recursively the data in the ref property -->
+				<variable name="url" type="string">jdbc:mysql://localhost:3306/administrative_area</variable> <!-- hostname:port/schema -->
+				<variable name="driverClassName" type="string">com.mysql.jdbc.Driver</variable>
+				<variable name="username" type="string">otp</variable>
+				<variable name="password" type="string">Noname(02)</variable>
+				<!-- <variable name="validatorClassName" type="string"></variable> -->
+				<variable name="minPool" type="integer">4</variable>
+				<variable name="maxPool" type="integer">32</variable>
+				<!-- <variable name="maxSize" type="integer"></variable> -->
+				<variable name="idleTimeout" type="integer">10000</variable>
+				<variable name="loginTimeout" type="integer">10000</variable>
+			</variables>
+		</sql>
+	</datasources>
 </mario>
